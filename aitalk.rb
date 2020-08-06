@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -w
+﻿#!/usr/bin/ruby -w
 
 require 'getoptlong'
 require 'net/http'
@@ -18,12 +18,12 @@ opts = GetoptLong.new(
 )
 
 def printusage()
-  puts "Usage: ruby aitalk.rb [--help] [--voice (akari|anzu|kaho|koutarou|nagisa|nanako|seiji)] [--host host] [-o output] [--rate rate] [--pitch pitch] [--volume volume] [--txtdirect] text"
-  puts "   or  ruby aitalk.rb [--help] [--voice (akari|anzu|kaho|koutarou|nagisa|nanako|seiji)] [--host host] [-o output] [--rate rate] [--pitch pitch] [--volume volume] [--txtdirect] < textfile (first line only)"
+  puts "Usage: ruby aitalk.rb [--help] [--voice (refer to voiceDB)] [--host host] [-o output] [--rate rate] [--pitch pitch] [--volume volume] [--txtdirect] text"
+  puts "   or  ruby aitalk.rb [--help] [--voice (refer to voiceDB)] [--host host] [-o output] [--rate rate] [--pitch pitch] [--volume volume] [--txtdirect] < textfile (first line only)"
   puts "Options:"
   puts "  --help           display this help"
   puts "  --voice arg      specify voice (default: anzu)"
-  puts "  --host arg       specify TTS server (default: 133.1.32.48)"
+  puts "  --host arg       specify TTS server (default: 100.86.6.34)"
   puts "  --output arg     specify output filename (default: output.wav)"
   puts "  --rate arg       specify speaking rate (speed) (default: 1.0; between 0.5 and 2.0)"
   puts "  --pitch arg      specify pitch (default: 1.0; between 0.5 and 2.0)"
@@ -32,7 +32,8 @@ def printusage()
   exit(0)
 end
 
-voiceDB = Array['akari','anzu','kaho','koutarou','nagisa','nanako','seiji']
+#voiceDB = Array['akari','anzu','kaho','koutarou','nagisa','nanako','seiji'] # for the old server
+voiceDB = Array['akari','anzu','koutarou','maki','maki_emo','miyabi_west','nozomi','nozomi_emo','seiji']
 
 MyOpts = Hash.new()
 opts.each do |opt, arg|
@@ -41,7 +42,7 @@ end
 
 printusage() if MyOpts['--help']
 
-host = (MyOpts['--host'] ? MyOpts['--host'] : '133.1.32.48')
+host = (MyOpts['--host'] ? MyOpts['--host'] : '100.86.6.34')
 outputfilename = (MyOpts['--output'] ? MyOpts['--output'] : 'output.wav')
 voice = (MyOpts['--voice'] ? MyOpts['--voice'] : 'anzu')
 unless voiceDB.include?(voice) then
