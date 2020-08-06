@@ -1,0 +1,1 @@
+こんにちは。この部分は<vtml_pitch value="200">特別高い声で</vtml_pitch>読んでいます。
