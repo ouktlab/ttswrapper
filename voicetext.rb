@@ -8,15 +8,16 @@ require 'net/http'
 opts = GetoptLong.new(
                       [ "--help", GetoptLong::NO_ARGUMENT ],
                       [ "--host", GetoptLong::REQUIRED_ARGUMENT ],
+                      [ "--speaker", GetoptLong::REQUIRED_ARGUMENT ],
                       [ "--output", GetoptLong::REQUIRED_ARGUMENT ]
 )
 
 def printusage()
-  puts "Usage: ruby voicetext.rb [--help] [--host host] [-o output] text"
-  puts "   or  ruby voicetext.rb [--help] [--host host] [-o output] < textfile (first line only)"
+  puts "Usage: ruby voicetext.rb [--help] [--host host] [--speaker sp] [-o output] text"
+  puts "   or  ruby voicetext.rb [--help] [--host host] [--speaker sp] [-o output] < textfile (first line only)"
   puts "Options:"
   puts "  --help           display this help"
-  puts "  --host arg       specify TTS server (default: 133.1.32.48)"
+  puts "  --host arg       specify TTS server (default: 100.86.6.34)"
   puts "  --output arg     specify output filename (default: output.wav)"
   exit(0)
 end
@@ -28,8 +29,9 @@ end
 
 printusage() if MyOpts['--help']
 
-host = (MyOpts['--host'] ? MyOpts['--host'] : '133.1.32.48')
+host = (MyOpts['--host'] ? MyOpts['--host'] : '100.86.6.34')
 outputfilename = (MyOpts['--output'] ? MyOpts['--output'] : 'output.wav')
+spid = (MyOpts['--speaker'] ? MyOpts['--speaker'] : '302')
 
 text = (ARGV[0] ? ARGV[0] : STDIN.gets())
 text = CGI.escape(text.toeuc)
@@ -38,4 +40,4 @@ text = CGI.escape(text.toeuc)
 
 http = Net::HTTP.start(host)
 f = File.open(outputfilename, "wb")
-f.print http.get("/cgi-bin/voicetext/voicetextsrv.pl?text=#{text}").body
+f.print http.get("/cgi-bin/voicetext/voicetextsrv.pl?text=#{text}&speaker=#{spid}").body
