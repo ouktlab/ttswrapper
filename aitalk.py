@@ -20,7 +20,7 @@ def parse():
 	parser.add_argument("--help", action="store_true")
 	parser.add_argument("--txtdirect", action="store_true")
 	parser.add_argument("--voice", default="anzu")
-	parser.add_argument("--host", default="133.1.32.48")
+	parser.add_argument("--host", default="100.86.6.34")
 	parser.add_argument("--output", default="output.wav")
 	parser.add_argument("--rate", type=float, default=1.0)
 	parser.add_argument("--pitch", type=float, default=1.0)
@@ -29,12 +29,12 @@ def parse():
 	return parser.parse_args()
 
 def printusage():
-	print("Usage: ruby aitalk.rb [--help] [--voice (akari|anzu|kaho|koutarou|nagisa|nanako|seiji)] [--host host] [-o output] [--rate rate] [--pitch pitch] [--volume volume] [--txtdirect] text")
-	print("   or  ruby aitalk.rb [--help] [--voice (akari|anzu|kaho|koutarou|nagisa|nanako|seiji)] [--host host] [-o output] [--rate rate] [--pitch pitch] [--volume volume] [--txtdirect] < textfile (first line only)")
+	print("Usage: ruby aitalk.rb [--help] [--voice (refer to voiceDB)] [--host host] [-o output] [--rate rate] [--pitch pitch] [--volume volume] [--txtdirect] text")
+	print("   or  ruby aitalk.rb [--help] [--voice (refer to voiceDB)] [--host host] [-o output] [--rate rate] [--pitch pitch] [--volume volume] [--txtdirect] < textfile (first line only)")
 	print("Options:")
 	print("  --help           display this help")
 	print("  --voice arg      specify voice (default: anzu)")
-	print("  --host arg       specify TTS server (default: 133.1.32.48)")
+	print("  --host arg       specify TTS server (default: 100.86.6.34)")
 	print("  --output arg     specify output filename (default: output.wav)")
 	print("  --rate arg       specify speaking rate (speed) (default: 1.0; between 0.5 and 2.0)")
 	print("  --pitch arg      specify pitch (default: 1.0; between 0.5 and 2.0)")
@@ -60,7 +60,8 @@ def toUnicode(encodedStr):   # for Python2
             pass
 
 
-voiceDB = ['akari','anzu','kaho','koutarou','nagisa','nanako','seiji']
+#voiceDB = ['akari','anzu','kaho','koutarou','nagisa','nanako','seiji']
+voiceDB = ['akari','anzu','koutarou','maki','maki_emo','miyabi_west','nozomi','nozomi_emo','seiji']
 
 
 if __name__ == "__main__":
