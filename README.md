@@ -8,6 +8,9 @@
 
 
 ## ChangeLog
+#### 2020/08/06
+* github に掲載．これ以降のupdateはHistory参照のこと．
+
 #### 2018/05/14 版での変更点 (akai)
 * aitalk.rb, voicetext.rb:  
 	     ruby 2.4.0以降のバージョンに対応
