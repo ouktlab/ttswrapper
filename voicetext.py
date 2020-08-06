@@ -18,17 +18,19 @@ except:
 def parse():
 	parser = argparse.ArgumentParser(add_help=False)
 	parser.add_argument("--help", action="store_true")
-	parser.add_argument("--host", default="133.1.32.48")
+	parser.add_argument("--host", default="100.86.6.34")
+	parser.add_argument("--speaker", default="302")
 	parser.add_argument("--output", default="output.wav")
 	parser.add_argument("text", nargs='?')
 	return parser.parse_args()
 
 def printusage():
-	print("Usage: ruby voicetext.rb [--help] [--host host] [-o output] text")
-	print("   or  ruby voicetext.rb [--help] [--host host] [-o output] < textfile (first line only)")
+	print("Usage: ruby voicetext.py [--help] [--host host] [--speaker spid] [-o output] text")
+	print("   or  ruby voicetext.py [--help] [--host host] [--speaker spid] [-o output] < textfile (first line only)")
 	print("Options:")
 	print("  --help           display this help")
-	print("  --host arg       specify TTS server (default: 133.1.32.48)")
+	print("  --host arg       specify TTS server (default: 100.86.6.34)")
+	print("  --speaker spid   specify speaker ID (default: 302; available: 303, 307, 103(english))")
 	print("  --output arg     specify output filename (default: output.wav)")
 	sys.exit()
 
@@ -58,6 +60,7 @@ if __name__ == "__main__":
 	
 	host = args.host
 	outputfilename = args.output
+	spid = args.speaker
 
 	if args.text:
 		text = args.text
@@ -69,7 +72,7 @@ if __name__ == "__main__":
 	text = toUnicode(text).encode('euc_jp')
 	text = quote_plus(text, safe='')
 	
-	url = "http://%s/cgi-bin/voicetext/voicetextsrv.pl?text=%s" % (host, text)
+	url = "http://%s/cgi-bin/voicetext/voicetextsrv.pl?text=%s&speaker=%s" % (host, text, spid)
 	res = urlopen(url)
 	body = res.read()
 
