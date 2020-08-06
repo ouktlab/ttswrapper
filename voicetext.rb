@@ -18,7 +18,7 @@ def printusage()
   puts "Options:"
   puts "  --help           display this help"
   puts "  --host arg       specify TTS server (default: 100.86.6.34)"
-  puts "  --speaker spid   specify speaker ID (default: 302)"
+  puts "  --speaker spid   specify speaker ID (default: 302; available: 303, 307, 103(english))"
   puts "  --output arg     specify output filename (default: output.wav)"
   exit(0)
 end
